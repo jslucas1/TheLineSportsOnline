@@ -1,0 +1,19 @@
+﻿@model TheLineSportsOnline.Models.Team
+
+@{
+    ViewBag.Title = "Delete "+ Model.Name;
+}
+
+<h2>Delete Team</h2>
+
+<h3>Are you sure you want to delete @Html.DisplayFor(model => model.Name)?</h3>
+<br />
+<div>
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-sm btn-primary btn-danger" /> 
+            @Html.ActionLink("Back to List", "Index", "Teams", null, new { @class = "btn btn-sm btn-primary btn-success" })
+        </div>
+    }
+</div>

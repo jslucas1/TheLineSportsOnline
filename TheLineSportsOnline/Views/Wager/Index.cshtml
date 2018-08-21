@@ -1,0 +1,86 @@
+﻿@model IEnumerable<TheLineSportsOnline.Models.Wager>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>This Weeks Wagers</h2>
+
+@Html.ActionLink("Place Wager", "New", "Wager", null, new { @class = "btn btn-primary" })
+<br /><br />
+
+<table id="customers" class="text-center table-bordered table-condensed table">
+    <thead>
+        <tr>
+            <th class="text-center">$ BET $</th>
+            <th class="text-center">FAVORITE</th>
+            <th class="text-center">Spread</th>
+            <th class="text-center">UNDERDOG</th>
+            <th class="text-center">$ BET $</th>
+            <th class="text-center">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var wager in Model)
+        {
+        <tr>
+            @if (wager.Game.Spread < 0)
+            {
+                if (wager.HomeOrVisit.ToLower() == "home")
+                {
+                    <td>@wager.Amount</td>
+                }
+                else
+                {
+                    <td></td>
+                }
+                <td>at @wager.Game.HomeTeam.Name</td>
+            }
+            else
+            {
+                if (wager.HomeOrVisit.ToLower() == "away")
+                {
+                    <td>@wager.Amount</td>
+                }
+                else
+                {
+                    <td></td>
+                }
+                <td>@wager.Game.VisitTeam.Name</td>
+            }
+            @if (wager.Game.Spread >= 0)
+            {
+
+                <td>@(wager.Game.Spread)</td>
+                <td>at @wager.Game.HomeTeam.Name</td>
+                if (wager.HomeOrVisit.ToLower() == "home")
+                {
+                    <td>@wager.Amount</td>
+                }
+                else
+                {
+                    <td></td>
+                }
+            }
+            else
+            {
+                <td>@(wager.Game.Spread * -1)</td>
+                <td>@wager.Game.VisitTeam.Name</td>
+                if (wager.HomeOrVisit.ToLower() == "away")
+                {
+                    <td>@wager.Amount</td>
+                }
+                else
+                {
+                    <td></td>
+                }
+            }
+
+            <td>
+                <a class="btn btn-sm btn-primary" href="/Wager/Delete/@wager.Id">Delete</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+
