@@ -1,0 +1,87 @@
+﻿@model IEnumerable<TheLineSportsOnline.Models.Game>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Manage Games</h2>
+
+@Html.ActionLink("Add Game", "New", "Game", null, new { @class = "btn btn-primary" })
+@Html.ActionLink("Deactivate", "Deactivate", "Game", null, new { @class = "btn btn-primary" })
+<br /><br />
+
+<table id="customers" class="table-responsive table">
+    <thead>
+        <tr>
+            <th>Home Team</th>
+            <th>Spread</th>
+            <th>Visit Team</th>
+            <th>Active?</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var game in Model)
+        {
+            <tr>
+                <td>@game.HomeTeam.Name</td>
+                <td>@game.Spread</td>
+                <td>@game.VisitTeam.Name</td>
+                <td>@game.Active</td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = game.Id }, new { @class = "btn btn-sm btn-primary" })
+                    @Html.ActionLink("Delete", "Delete", new { id = game.Id }, new { @class = "btn btn-sm btn-primary" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+@*@section scripts{
+        <script>
+            $(document).ready(function () {
+                var table = $("#customers").DataTable({
+                    ajax: {
+                        url: "/api/customers/",
+                        dataSrc: ""
+                    },
+                    columns: [
+                        {
+                            data: "name",
+                            render: function (data, type, customer) {
+                                return "<a href='/customer/edit/" + customer.id + "'>" + customer.name + "</a>";
+                            }
+                        },
+                        {
+                            data: "membershipType.name"
+                        },
+                        {
+                            data: "id",
+                            render: function (data) {
+                                return "<button class='btn btn-sm btn-primary js-delete' data-customer-id="
+                                    + data + ">Delete</button>";
+                            }
+                        }
+                    ]
+                });
+                $("#customers").on("click", ".js-delete", function () {
+                    var button = $(this);
+                    bootbox.confirm("Are you sure you want to delete this customer?", function (result) {
+                        if (result) {
+                            $.ajax({
+                                url: "/api/customers/" + button.attr("data-customer-id"),
+                                method: "DELETE",
+                                success: function () {
+                                    table.row(button.parents("tr")).remove().draw();
+                                }
+                            });
+                        }
+                    });
+
+                });
+            });
+
+        </script>
+
+    }*@

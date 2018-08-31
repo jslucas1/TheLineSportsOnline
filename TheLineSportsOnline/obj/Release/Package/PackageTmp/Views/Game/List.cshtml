@@ -1,0 +1,46 @@
+﻿
+@model IEnumerable<TheLineSportsOnline.Models.Game>
+
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>Games</h2>
+
+<table id="games" class="table-bordered table-condensed table text-center">
+    <thead>
+        <tr>
+            <th class="text-center">FAVORITE</th>
+            <th class="text-center">Spread</th>
+            <th class="text-center">UNDERDOG</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var game in Model)
+        {
+            <tr>
+                @if (game.Spread < 0)
+                {
+                    <td>at @game.HomeTeam.Name</td>
+                }
+                else
+                {
+                    <td>@game.VisitTeam.Name</td>
+                }
+
+                @if (game.Spread >= 0)
+                {
+
+                    <td>@(game.Spread)</td>
+                    <td>at @game.HomeTeam.Name</td>
+
+                }
+                else
+                {
+                    <td>@(game.Spread * -1)</td>
+                    <td>@game.VisitTeam.Name</td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>

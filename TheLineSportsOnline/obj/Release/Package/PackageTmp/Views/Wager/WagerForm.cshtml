@@ -1,0 +1,37 @@
+﻿@model TheLineSportsOnline.ViewModels.WagerFormViewModel
+@{
+    ViewBag.Title = "Wager Form";
+}
+
+<h2>Wager</h2>
+
+@using (Html.BeginForm("Save", "Wager"))
+{
+    @Html.ValidationSummary()
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Wager.GameId)
+        @Html.DropDownListFor(m => m.Wager.GameId, new SelectList(Model.Games, "Id", "Name"), "Select Game", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Wager.GameId)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Wager.HomeOrVisit)
+        @Html.DropDownListFor(m => m.Wager.HomeOrVisit, new SelectList(Model.Teams), "Select Team", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Wager.HomeOrVisit)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Wager.Amount)
+        @Html.TextBoxFor(m => m.Wager.Amount, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Wager.Amount)
+    </div>
+
+    @Html.HiddenFor(m => m.Wager.Id);
+    @Html.HiddenFor(m => m.Wager.ApplicationUserId);
+    @Html.AntiForgeryToken()
+    <button type="submit" class="btn btn-primary">Save</button>
+}
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+}

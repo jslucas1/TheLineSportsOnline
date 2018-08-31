@@ -52,24 +52,16 @@ namespace TheLineSportsOnline.Models
                 return new ValidationResult(ERR_MAX_BET);
 
             }
-            if (user.Email == "jensen.rivers@gmail.com")
-            {
-                return ValidationResult.Success;
-            }
+         
             // Wager Locked based on DateTime
             var day = DateTime.Now.DayOfWeek.ToString().ToLower();
             TimeSpan cutOfTime = new TimeSpan(17, 0, 0); //5 o'clock
             TimeSpan now = DateTime.Now.TimeOfDay;
-            if (day == "friday" || day == "saturday")
+
+            if ((day == "friday" && (now > cutOfTime)) || day == "saturday" || day == "sunday")
             {
                 return new ValidationResult(ERR_BET_LOCK);
             }
-            if (day == "thursday" && (now > cutOfTime))
-            {
-                return new ValidationResult(ERR_BET_LOCK);
-            }
-
-
 
             return ValidationResult.Success;
         }

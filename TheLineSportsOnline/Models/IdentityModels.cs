@@ -12,6 +12,8 @@ namespace TheLineSportsOnline.Models
     public class ApplicationUser : IdentityUser
     {
         public long Wallet { get; set; }
+        public long MinWager { get; set; }
+        public long MaxWager { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {

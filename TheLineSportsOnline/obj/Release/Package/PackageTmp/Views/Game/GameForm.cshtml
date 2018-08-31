@@ -1,0 +1,62 @@
+﻿@model TheLineSportsOnline.ViewModels.GameFormViewModel
+@{
+    /**/
+
+    ViewBag.Title = "Game Form";
+}
+
+<h2>Game Form</h2>
+
+@using (Html.BeginForm("Save", "Game"))
+{
+    @Html.ValidationSummary()
+
+    // Home Team Id
+    <div class="form-group">
+        @Html.LabelFor(m => m.Game.HomeTeamId)
+        @Html.DropDownListFor(m => m.Game.HomeTeamId, new SelectList(Model.Teams, "Id", "Name"), "Select Team", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Game.HomeTeamId)
+    </div>
+
+    // Visit Team Id
+    <div class="form-group">
+        @Html.LabelFor(m => m.Game.VisitTeamId)
+        @Html.DropDownListFor(m => m.Game.VisitTeamId, new SelectList(Model.Teams, "Id", "Name"), "Select Team", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Game.VisitTeamId)
+    </div>
+
+    // Spread
+    <div class="form-group">
+        @Html.LabelFor(m => m.Game.Spread)
+        @Html.TextBoxFor(m => m.Game.Spread, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Game.Spread)
+    </div>
+
+    // Home Team Score
+    <div class="form-group">
+        @Html.LabelFor(m => m.Game.HomeTeamScore)
+        @Html.TextBoxFor(m => m.Game.HomeTeamScore, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Game.HomeTeamScore)
+    </div>
+
+    // Visit Team Score
+    <div class="form-group">
+        @Html.LabelFor(m => m.Game.VisitTeamScore)
+        @Html.TextBoxFor(m => m.Game.VisitTeamScore, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Game.VisitTeamScore)
+    </div>
+
+    // Active
+    <div class="checkbox">
+        <label>
+            @Html.CheckBoxFor(m => m.Game.Active) Avalible for Wager?
+        </label>
+    </div>
+    @Html.HiddenFor(m => m.Game.Name)
+    @Html.HiddenFor(m => m.Game.Id)
+    @Html.AntiForgeryToken()
+    <button type="submit" class="btn btn-primary">Save</button>
+}
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+}

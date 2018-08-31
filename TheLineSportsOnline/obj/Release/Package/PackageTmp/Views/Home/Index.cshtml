@@ -1,0 +1,18 @@
+﻿@{
+    ViewBag.Title = "TheLine - Home";
+}
+
+<div class="jumbotron">
+    <h1 class="h1">The Line Sports</h1>
+    <h2 class="h2">Which Side Are You On?</h2>
+    <p class="lead">CREATE, COMPETE, CONNECT</p>
+    <p>A new social experience of competative camraderie that is simple, easy and fun</p>
+    @if (!Request.IsAuthenticated)
+    {
+        <p><a href="/Account/Register" class="btn btn-primary btn-lg">Get Started &raquo;</a></p>
+    }
+    </div>
+
+<div class="row">
+
+</div>

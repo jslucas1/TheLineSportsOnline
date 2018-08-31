@@ -1,0 +1,35 @@
+﻿@model IEnumerable<TheLineSportsOnline.Models.LockOfTheWeek>
+
+@{
+    ViewBag.Title = "LOTW";
+}
+
+<h2>Lock Of The Week</h2>
+<br />
+<div class="col">
+
+
+</div>
+
+@foreach (var item in Model)
+{
+    <div class="row panel">
+        <div class="col-sm-2">
+            <img src="~/Content/admin.png" style="height:25%; max-height:150px; max-width:150px; width:25%" />
+        </div>
+
+        <div class="col-sm-10 panel panel-primary">
+            <div class="row">
+                @item.Header
+            </div>
+            <div class="row">
+                @item.MSG
+            </div>
+            <div class="row">
+                @item.Footer
+            </div>
+        </div>
+    </div>
+
+}
+
