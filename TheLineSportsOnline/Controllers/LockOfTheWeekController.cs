@@ -123,7 +123,7 @@ namespace TheLineSportsOnline.Controllers
         public ActionResult SendEmail()
         {
             var lotw = db.Locks.Where(l => l.Active == true).OrderByDescending(x => x.Id).ToList().First();
-            var users = db.Users.Where(n => n.UserName == "aclucas196@gmail.com").ToList();
+            var users = db.Users.ToList();
             foreach (ApplicationUser user in users)
             {
                 EmailLOTW(user.UserName, user.Email, lotw);
