@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
 using TheLineSportsOnline.Models;
@@ -117,6 +118,46 @@ namespace TheLineSportsOnline.Controllers
             db.Locks.Remove(lockOfTheWeek);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        public ActionResult SendEmail()
+        {
+            var lotw = db.Locks.Where(l => l.Active == true).OrderByDescending(x => x.Id).ToList().First();
+            var users = db.Users.Where(n => n.UserName == "aclucas196@gmail.com").ToList();
+            foreach (ApplicationUser user in users)
+            {
+                EmailLOTW(user.UserName, user.Email, lotw);
+            }
+
+            return RedirectToAction("Index");
+        }
+
+        public void EmailLOTW(string email, string name, LockOfTheWeek lotw)
+        {
+
+            var fromAddress = new MailAddress("thelinesportsonline@gmail.com", "The Line Sports");
+            var toAddress = new MailAddress(email, name);
+            string fromPassword = "Rolltide1!";
+            string subject = lotw.Header;
+            string body = lotw.MSG + Environment.NewLine + Environment.NewLine + "- " + lotw.Footer;
+
+            var smtp = new SmtpClient
+            {
+                Host = "smtp.gmail.com",
+                Port = 587,
+                EnableSsl = true,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
+                Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
+            };
+            using (var message = new MailMessage(fromAddress, toAddress)
+            {
+                Subject = subject,
+                Body = body
+            })
+            {
+                smtp.Send(message);
+            }
         }
 
         protected override void Dispose(bool disposing)

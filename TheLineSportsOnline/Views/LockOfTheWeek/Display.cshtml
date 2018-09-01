@@ -19,7 +19,18 @@
         <div class="well">
             <div class="media">
                 <a class="pull-left" href="#">
-                    <img class="media-object" src="~/Content/admin.png">
+                    @if (item.Footer == "Jeff Lucas")
+                    {
+                        <img class="media-object" 
+                             style="max-height: 120px" 
+                             src="https://media.licdn.com/dms/image/C4E03AQH8eHaFuhvYMg/profile-displayphoto-shrink_800_800/0?e=1541030400&v=beta&t=5YqFy3rZfCqvjkZtFzUDCQC_b3kdpFQUadl73MCjA1M">
+                    }
+                    else
+                    {
+                        <img class="media-object" 
+                         style="max-height: 120px"
+                         src="~/Content/admin.png">
+                    }
                 </a>
                 <div class="media-body">
                     <h4 class="media-heading">@item.Header</h4>
