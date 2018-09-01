@@ -58,7 +58,7 @@ namespace TheLineSportsOnline.Models
             TimeSpan cutOfTime = new TimeSpan(17, 0, 0); //5 o'clock
             TimeSpan now = DateTime.Now.TimeOfDay;
 
-            if (day == "sunday")
+            if (day == "saturday" || day == "sunday")
             {
                 return new ValidationResult(ERR_BET_LOCK);
             }
