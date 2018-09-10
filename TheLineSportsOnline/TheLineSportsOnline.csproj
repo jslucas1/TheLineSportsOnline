@@ -217,6 +217,10 @@
     <Compile Include="Migrations\201808310014070_addMinMaxWager.Designer.cs">
       <DependentUpon>201808310014070_addMinMaxWager.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809072153521_WagerIdToINT.cs" />
+    <Compile Include="Migrations\201809072153521_WagerIdToINT.Designer.cs">
+      <DependentUpon>201809072153521_WagerIdToINT.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Conference.cs" />
@@ -349,6 +353,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201808310014070_addMinMaxWager.resx">
       <DependentUpon>201808310014070_addMinMaxWager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809072153521_WagerIdToINT.resx">
+      <DependentUpon>201809072153521_WagerIdToINT.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

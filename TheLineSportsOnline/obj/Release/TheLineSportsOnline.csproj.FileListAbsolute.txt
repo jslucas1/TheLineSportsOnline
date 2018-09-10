@@ -248,3 +248,4 @@ C:\Users\Austin Lucas\Desktop\TheLineSportsOnline\TheLineSportsOnline\obj\Releas
 C:\Users\Austin Lucas\Desktop\TheLineSportsOnline\TheLineSportsOnline\obj\Release\TheLineSportsOnline.csproj.CopyComplete
 C:\Users\Austin Lucas\Desktop\TheLineSportsOnline\TheLineSportsOnline\obj\Release\TheLineSportsOnline.dll
 C:\Users\Austin Lucas\Desktop\TheLineSportsOnline\TheLineSportsOnline\obj\Release\TheLineSportsOnline.pdb
+C:\Users\jslucas\Documents\GitHub\TheLineSportsOnline\TheLineSportsOnline\obj\Release\TheLineSportsOnline.Migrations.WagerIdToINT.resources

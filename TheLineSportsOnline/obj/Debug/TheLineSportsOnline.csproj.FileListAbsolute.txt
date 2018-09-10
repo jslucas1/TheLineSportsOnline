@@ -247,3 +247,4 @@ C:\Users\jslucas\Documents\GitHub\TheLineSportsOnline\TheLineSportsOnline\obj\De
 C:\Users\jslucas\Documents\GitHub\TheLineSportsOnline\TheLineSportsOnline\obj\Debug\TheLineSportsOnline.dll
 C:\Users\jslucas\Documents\GitHub\TheLineSportsOnline\TheLineSportsOnline\obj\Debug\TheLineSportsOnline.pdb
 C:\Users\jslucas\Documents\GitHub\TheLineSportsOnline\TheLineSportsOnline\obj\Debug\TheLineSportsOnline.Migrations.addMinMaxWager.resources
+C:\Users\jslucas\Documents\GitHub\TheLineSportsOnline\TheLineSportsOnline\obj\Debug\TheLineSportsOnline.Migrations.WagerIdToINT.resources
