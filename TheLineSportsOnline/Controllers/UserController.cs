@@ -18,7 +18,7 @@ namespace TheLineSportsOnline.Controllers
         }
         public ActionResult Index()
         {
-            var users = _context.Users.Include(x => x.Roles).ToList();
+            var users = _context.Users.Include(x => x.Roles).OrderBy(w => w.Email).ToList();
             return View(users);
         }
         public ActionResult Delete(string id)
@@ -35,7 +35,40 @@ namespace TheLineSportsOnline.Controllers
             _context.SaveChanges();
             return RedirectToAction("Index", "User");
         }
+        public ActionResult Default(string id)
+        {
+            var user = _context.Users.SingleOrDefault(c => c.Id == id);
 
+            if (user == null)
+            {
+                return HttpNotFound();
+            }
+
+            var game = _context.Games
+                .Where(a => a.Active == true)
+                .OrderByDescending(b => b.Spread)
+                .First();
+
+            Wager defaultWager = new Wager();
+            defaultWager.Amount = (int) (((user.Wallet / 2) % 10 == 0) ? (user.Wallet / 2) : (user.Wallet / 2) + 5);
+            defaultWager.ApplicationUserId = user.Id;
+            defaultWager.GameId = game.Id;
+            defaultWager.HomeOrVisit = (game.Spread < 0) ? "Home" : "Away";
+
+            var wagers = _context.Wagers
+                    .Where(w => w.Game.Active)
+                    .Where(w => w.ApplicationUserId == user.Id)
+                    .ToList();
+            foreach (var w in wagers)
+            {
+                _context.Wagers.Remove(w);
+            }
+
+            _context.Wagers.Add(defaultWager);
+
+            _context.SaveChanges();
+            return RedirectToAction("Index", "User");
+        }
 
         public ActionResult CalcResults()
         {
@@ -58,7 +91,7 @@ namespace TheLineSportsOnline.Controllers
                 }
                 // Calculate how much to apply based on how much the Wager awards
                 applyToWallet += Wager.Award(item);
-                
+
             }
             currentUser.Wallet += applyToWallet;
             _context.SaveChanges();
