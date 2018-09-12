@@ -26,10 +26,18 @@ namespace TheLineSportsOnline.Controllers
             _context.Dispose();
         }
         [Authorize(Roles = "Admin")]
-        public ActionResult Index()
+        public ActionResult Index(string display = "default")
         {
-
-            var games = _context.Games.Include(h => h.HomeTeam).Include(v => v.VisitTeam).ToList();
+            var games = new List<Game>();
+            ViewData["Display"] = display;
+            if (display == "active")
+            {
+                games = _context.Games.Include(h => h.HomeTeam).Include(v => v.VisitTeam).Where(d => d.Active == true).OrderBy(g => g.Id).ToList();
+            }
+            else
+            {
+                games = _context.Games.Include(h => h.HomeTeam).Include(v => v.VisitTeam).OrderBy(g => g.Id).ToList();
+            }
 
             return View(games);
         }
