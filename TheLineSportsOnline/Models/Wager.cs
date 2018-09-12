@@ -10,7 +10,7 @@ namespace TheLineSportsOnline.Models
     public class Wager
     {
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
-        public byte Id { get; set; }
+        public int Id { get; set; }
 
         [Required]
         public byte GameId { get; set; }
