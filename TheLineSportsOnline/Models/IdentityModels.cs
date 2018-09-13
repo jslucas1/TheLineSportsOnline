@@ -33,6 +33,25 @@ namespace TheLineSportsOnline.Models
             }
         }
 
+        public long getMinWager()
+        {
+            if (this.Wallet > 0)
+            {
+                if ((this.Wallet / 2) % 10 != 0)
+                {
+                    return ((this.Wallet / 2) + 5);
+                }
+                else
+                {
+                    return (this.Wallet / 2);
+                }
+            }
+            else
+            {
+                return 0;
+            }
+        }
+
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
 
