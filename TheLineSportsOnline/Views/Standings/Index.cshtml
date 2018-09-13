@@ -17,35 +17,12 @@
     <tbody>
         @foreach (var user in Model)
         {
-        <tr>
-            <td>@user.Email</td>
-            <td>@user.Wallet</td>
-            @if (user.Wallet > 0)
-            {
-                if ((user.Wallet / 2) % 10 != 0)
-                {
-                    <td>@((user.Wallet / 2) + 5)</td>
-                }
-                else
-                {
-                    <td>@(user.Wallet / 2)</td>
-                }
-
-                }
-            else
-            {
-                <td>0</td>
-            }
-
-            @if ((user.Wallet + 1000) > Math.Abs(user.Wallet - 1000))
-            {
-                <td>@(user.Wallet + 1000) </td> }
-            else
-            {
-                <td>@Math.Abs(user.Wallet - 1000)</td>}
-
-
-        </tr>
+            <tr>
+                <td>@user.Email</td>
+                <td>@user.Wallet</td>
+                <td>@user.getMinWager()</td>
+                <td>@user.getMaxWager()</td>
+            </tr>
         }
     </tbody>
 </table>

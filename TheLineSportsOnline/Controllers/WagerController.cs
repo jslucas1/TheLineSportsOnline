@@ -45,6 +45,8 @@ namespace TheLineSportsOnline.Controllers
                 .Where(w => w.Game.Active == true)
                 .ToList();
 
+            ViewData["minWagerIsMeet"] = minWagerIsMeet(user, wagers).ToString().ToLower();
+
             return View(wagers);
         }
 
@@ -115,6 +117,23 @@ namespace TheLineSportsOnline.Controllers
             return RedirectToAction("index", "Wager");
         }
 
+        public bool minWagerIsMeet(ApplicationUser user, List<Wager> wagers)
+        {
+            int total = 0;
+            foreach (var w in wagers)
+            {
+                total += w.Amount;
+            }
+
+            if ((user.Wallet / 2) % 10 != 0)
+            {
+                return total >= ((user.Wallet / 2) + 5);
+            }
+            else
+            {
+                return total >= (user.Wallet / 2);
+            }
+        }
 
         //public ActionResult Edit(int id)
         //{

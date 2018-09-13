@@ -8,6 +8,16 @@
 
 @Html.ActionLink("Add Game", "New", "Game", null, new { @class = "btn btn-primary" })
 @Html.ActionLink("Deactivate", "Deactivate", "Game", null, new { @class = "btn btn-primary" })
+
+@if (ViewData["Display"].ToString() == "active")
+{
+    @Html.ActionLink("View All", "Index", "Game", new { display = "all" }, new { @class = "btn btn-success" })
+}
+else
+{
+    @Html.ActionLink("View Active", "Index", "Game", new { display = "active" }, new { @class = "btn btn-success" })
+}
+
 <br /><br />
 
 <table id="customers" class="table-striped table-condensed table-bordered table">

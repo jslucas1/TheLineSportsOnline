@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Security.Claims;
@@ -14,6 +15,42 @@ namespace TheLineSportsOnline.Models
         public long Wallet { get; set; }
         public long MinWager { get; set; }
         public long MaxWager { get; set; }
+        public bool Locked { get; set; }
+
+        public long getMaxWager()
+        {
+            if (this.Wallet <= -1000)
+            {
+                return 0;
+            }
+            else if ((this.Wallet + 1000) > Math.Abs(this.Wallet - 1000))
+            {
+                return (this.Wallet + 1000);
+            }
+            else
+            {
+                return Math.Abs(this.Wallet - 1000);
+            }
+        }
+
+        public long getMinWager()
+        {
+            if (this.Wallet > 0)
+            {
+                if ((this.Wallet / 2) % 10 != 0)
+                {
+                    return ((this.Wallet / 2) + 5);
+                }
+                else
+                {
+                    return (this.Wallet / 2);
+                }
+            }
+            else
+            {
+                return 0;
+            }
+        }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
@@ -44,7 +81,7 @@ namespace TheLineSportsOnline.Models
             return new ApplicationDbContext();
         }
 
-    //    public System.Data.Entity.DbSet<TheLineSportsOnline.Models.ApplicationUser> ApplicationUsers { get; set; }
+        //    public System.Data.Entity.DbSet<TheLineSportsOnline.Models.ApplicationUser> ApplicationUsers { get; set; }
     }
     public class IdentityManager
     {
