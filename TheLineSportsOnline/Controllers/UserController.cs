@@ -69,7 +69,20 @@ namespace TheLineSportsOnline.Controllers
             _context.SaveChanges();
             return RedirectToAction("Index", "User");
         }
+        public ActionResult Lock(string id, bool setLock)
+        {
+            var user = _context.Users.SingleOrDefault(c => c.Id == id);
 
+            if (user == null)
+            {
+                return HttpNotFound();
+            }
+
+            user.Locked = setLock;
+
+            _context.SaveChanges();
+            return RedirectToAction("Index", "User");
+        }
         public ActionResult CalcResults()
         {
             var wagers = _context.Wagers

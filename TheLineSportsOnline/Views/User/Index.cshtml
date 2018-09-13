@@ -7,7 +7,7 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Run Results", "CalcResults", null, new { @class = "btn btn-sm btn-success" })
+    @Html.ActionLink("Run Results", "CalcResults", null, new { @class = "btn btn-sm btn-primary" })
 </p>
 <table class="table table-condensed table-striped">
     <tr>
@@ -26,31 +26,52 @@
         <th>
             @Html.DisplayNameFor(model => model.UserName)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Locked)
+        </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Wallet)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LockoutEnabled)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AccessFailedCount)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserName)
-        </td>
-        <td>
-            @Html.ActionLink("Default", "Default", new { id=item.Id }, new { @class = "btn btn-sm btn-warning" })
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id }, new { @class = "btn btn-sm btn-danger" })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Wallet)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LockoutEnabled)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AccessFailedCount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+
+            @if (item.Locked)
+            {
+                <td>
+                    @Html.ActionLink("Unlock", "Lock", new { id = item.Id, setLock = false }, new { @class = "btn btn-sm btn-primary" })
+
+                </td>
+            }
+            else if (!item.Locked)
+            {
+                <td>
+                    @Html.ActionLink("Lock", "Lock", new { id = item.Id, setLock = true }, new { @class = "btn btn-sm btn-primary" })
+
+                </td>
+
+            }
+
+            <td>
+                @Html.ActionLink("Default", "Default", new { id = item.Id }, new { @class = "btn btn-sm btn-primary" })
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-sm btn-primary" })
+            </td>
+        </tr>
+    }
 
 </table>

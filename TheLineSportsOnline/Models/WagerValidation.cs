@@ -47,7 +47,8 @@ namespace TheLineSportsOnline.Models
             }
             // max bet
             long newWagerAmount = TotalWagersForUser(user.Id) + wager.Amount;
-            if ((user.Wallet - newWagerAmount) < -1000)
+
+            if (newWagerAmount > user.getMaxWager())
             {
                 return new ValidationResult(ERR_MAX_BET);
 

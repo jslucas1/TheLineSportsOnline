@@ -31,18 +31,24 @@
                     <td>@(user.Wallet / 2)</td>
                 }
 
-                }
+            }
             else
             {
                 <td>0</td>
             }
 
-            @if ((user.Wallet + 1000) > Math.Abs(user.Wallet - 1000))
+            @if (user.Wallet <= -1000)
             {
-                <td>@(user.Wallet + 1000) </td> }
+                <td>0</td>
+            }
+            else if ((user.Wallet + 1000) > Math.Abs(user.Wallet - 1000))
+            {
+                <td>@(user.Wallet + 1000) </td>
+            }
             else
             {
-                <td>@Math.Abs(user.Wallet - 1000)</td>}
+                <td> @Math.Abs(user.Wallet - 1000) </td>
+            }
 
 
         </tr>
