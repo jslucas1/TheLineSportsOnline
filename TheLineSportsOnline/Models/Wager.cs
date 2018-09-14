@@ -13,6 +13,7 @@ namespace TheLineSportsOnline.Models
         public int Id { get; set; }
 
         [Required]
+        [Display(Name = "Game")]
         public byte GameId { get; set; }
         public Game Game { get; set; }
 
@@ -20,6 +21,7 @@ namespace TheLineSportsOnline.Models
         public ApplicationUser User { get; set; }
 
         [Required]
+        [Display(Name = "Team")]
         public string HomeOrVisit { get; set; }
 
         [Required]

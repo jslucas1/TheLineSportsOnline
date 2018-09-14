@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
@@ -50,6 +51,23 @@ namespace TheLineSportsOnline.Models
             {
                 return 0;
             }
+        }
+
+        public bool minWagerMeet()
+        {
+            ApplicationDbContext _context = new ApplicationDbContext();
+            var wagers = new ApplicationDbContext().Wagers
+                .Include(b => b.Game)
+                .Where(a => a.ApplicationUserId == this.Id)
+                .Where(c => c.Game.Active == true)
+                .ToList();
+            long total = 0;
+            foreach (var item in wagers)
+            {
+                total += item.Amount;
+            }
+            return (total >= this.getMinWager());
+
         }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
