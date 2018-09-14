@@ -8,7 +8,7 @@
 <table class="table table-condensed table-striped table-bordered">
     <thead>
         <tr>
-            <th>Player</th>
+            <th colspan="2">Player</th>
             <th>Balance</th>
             <th>Min Bet</th>
             <th>Max Bet</th>
@@ -18,6 +18,7 @@
         @foreach (var user in Model)
         {
             <tr>
+                <td>@(Model.ToList().IndexOf(user)+1)</td>
                 <td>@user.Email</td>
                 <td>@user.Wallet</td>
                 <td>@user.getMinWager()</td>

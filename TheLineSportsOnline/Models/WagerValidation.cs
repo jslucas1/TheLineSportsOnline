@@ -17,6 +17,7 @@ namespace TheLineSportsOnline.Models
         private const string ERR_BET_LOCK = "Wagering is currently locked. Defualt may be applied";
         private const string ERR_MAX_BET = "This Wager will put you over your maximum wager amount.";
         private const string ERR_ELIMINATED = "You have been eliminated. Wagers locked.";
+        private const string ERR_LOCKED = "Wagers are currently locked.";
 
         private ApplicationDbContext _context = new ApplicationDbContext();
 
@@ -33,6 +34,13 @@ namespace TheLineSportsOnline.Models
             {
                 return new ValidationResult(ERR_ELIMINATED);
             }
+
+            // Locked
+            if (user.Locked)
+            {
+                return new ValidationResult(ERR_LOCKED);
+            }
+
 
             // Positive Number
             if (wager.Amount < 1)

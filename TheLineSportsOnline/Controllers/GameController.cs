@@ -26,7 +26,7 @@ namespace TheLineSportsOnline.Controllers
             _context.Dispose();
         }
         [Authorize(Roles = "Admin")]
-        public ActionResult Index(string display = "default")
+        public ActionResult Index(string display = "active")
         {
             var games = new List<Game>();
             ViewData["Display"] = display;

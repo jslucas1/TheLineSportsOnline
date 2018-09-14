@@ -67,10 +67,13 @@
 
             }
 
-            <td>
-                @Html.ActionLink("Default", "Default", new { id = item.Id }, new { @class = "btn btn-sm btn-primary" })
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-sm btn-primary" })
-            </td>
+                <td>
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-sm btn-danger" })
+                    @if (!item.minWagerMeet())
+                    {
+                        @Html.ActionLink("Default", "Default", new { id = item.Id }, new { @class = "btn btn-sm btn-warning" })
+                    }
+                </td>
         </tr>
     }
 
