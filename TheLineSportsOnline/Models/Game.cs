@@ -32,8 +32,11 @@ namespace TheLineSportsOnline.Models
         [Display(Name="Away Score")]
         public int? VisitTeamScore { get; set; }
 
-
         public bool Active { get; set; }
+
+        [Display(Name = "Week")]
+        public int WeekId { get; set; }
+        public Week Week { get; set; }
 
     }
 }

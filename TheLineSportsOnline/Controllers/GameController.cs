@@ -25,6 +25,7 @@ namespace TheLineSportsOnline.Controllers
         {
             _context.Dispose();
         }
+
         [Authorize(Roles = "Admin")]
         public ActionResult Index(string display = "active")
         {
@@ -41,6 +42,7 @@ namespace TheLineSportsOnline.Controllers
 
             return View(games);
         }
+
         [Authorize]
         public ActionResult List()
         {
@@ -49,6 +51,7 @@ namespace TheLineSportsOnline.Controllers
 
             return View(games);
         }
+
         [Authorize(Roles = "Admin")]
         public ActionResult New()
         {
@@ -56,11 +59,13 @@ namespace TheLineSportsOnline.Controllers
             var viewModel = new GameFormViewModel
             {
                 Teams = _context.Teams.OrderBy(x => x.Name).ToList(),
+                Weeks = _context.Weeks.OrderByDescending(x => x.Id).ToList(),
                 Game = new Game()
             };
 
             return View("GameForm", viewModel);
         }
+
         [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -69,11 +74,12 @@ namespace TheLineSportsOnline.Controllers
             game.Name = BuildGameName(game);
             if (!ModelState.IsValid)
             {
-                var viewModel = new GameFormViewModel
-                {
-                    Teams = _context.Teams.OrderBy(x => x.Name).ToList(),
-                    Game = game
-                };
+            var viewModel = new GameFormViewModel
+            {
+                Teams = _context.Teams.OrderBy(x => x.Name).ToList(),
+                Weeks = _context.Weeks.OrderByDescending(x => x.Id).ToList(),
+                Game = game
+            };
                 return View("GameForm", viewModel);
             }
 
@@ -97,6 +103,7 @@ namespace TheLineSportsOnline.Controllers
             _context.SaveChanges();
             return RedirectToAction("Index", "Game");
         }
+
         [Authorize(Roles = "Admin")]
         public ActionResult Edit(int id)
         {
@@ -109,12 +116,14 @@ namespace TheLineSportsOnline.Controllers
 
             var viewModel = new GameFormViewModel
             {
-                Teams = _context.Teams.ToList(),
+                Teams = _context.Teams.OrderBy(x => x.Name).ToList(),
+                Weeks = _context.Weeks.OrderByDescending(x => x.Id).ToList(),
                 Game = game
             };
 
             return View("GameForm", viewModel);
         }
+
         [Authorize(Roles = "Admin")]
         public ActionResult Details(int id)
         {
@@ -125,6 +134,7 @@ namespace TheLineSportsOnline.Controllers
             }
             return View("Details", game);
         }
+
         [Authorize(Roles = "Admin")]
         public ActionResult Delete(int id)
         {
@@ -140,6 +150,7 @@ namespace TheLineSportsOnline.Controllers
             _context.SaveChanges();
             return RedirectToAction("Index", "Game");
         }
+
         [Authorize(Roles = "Admin")]
         public ActionResult Deactivate()
         {
@@ -162,9 +173,6 @@ namespace TheLineSportsOnline.Controllers
 
             string fav = (game.Spread > 0) ? game.VisitTeam.Name : "at " + game.HomeTeam.Name;
             string und = (game.Spread > 0) ? "at " + game.HomeTeam.Name : game.VisitTeam.Name;
-
-
-
 
             string gameName = fav + " " + sprd + " " + und;
             return gameName;

@@ -70,6 +70,23 @@ namespace TheLineSportsOnline.Models
 
         }
 
+        public long currentlyWagered()
+        {
+            ApplicationDbContext _context = new ApplicationDbContext();
+            var wagers = new ApplicationDbContext().Wagers
+                .Include(b => b.Game)
+                .Where(a => a.ApplicationUserId == this.Id)
+                .Where(c => c.Game.Active == true)
+                .ToList();
+            long total = 0;
+            foreach (var item in wagers)
+            {
+                total += item.Amount;
+            }
+            return (total);
+
+        }
+
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
 
@@ -98,6 +115,8 @@ namespace TheLineSportsOnline.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<TheLineSportsOnline.Models.Week> Weeks { get; set; }
 
         //    public System.Data.Entity.DbSet<TheLineSportsOnline.Models.ApplicationUser> ApplicationUsers { get; set; }
     }
