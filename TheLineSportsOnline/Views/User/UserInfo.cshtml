@@ -1,0 +1,46 @@
+﻿@model TheLineSportsOnline.ViewModels.UserInfoViewModel
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>User Details</h2>
+
+<dl class="dl-horizontal">
+    <dt>ID</dt>
+    <dd>@Model.User.Id</dd>
+    <dt>Name</dt>
+    <dd>@Model.User.Email</dd>
+    <dt>Wallet</dt>
+    <dd>@Model.User.Wallet</dd>
+    <dt>Phone</dt>
+    <dd>@Model.User.PhoneNumber</dd>
+    <dt>Email</dt>
+    <dd>@Model.User.UserName</dd>
+    <dt>Min Wager</dt>
+    <dd>@Model.User.getMinWager()</dd>
+    <dt>Max Wager</dt>
+    <dd>@Model.User.getMaxWager()</dd>
+    <dt>Current Wager</dt>
+    <dd>@Model.User.currentlyWagered()</dd>
+</dl>
+
+<h2>Wagers</h2>
+<table id="wagers" class="table table-bordered table-condensed">
+    <thead>
+        <tr>
+            <th>Game</th>
+            <th>Pick</th>
+            <th>Amount</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var wager in Model.Wagers)
+        {
+            <tr>
+                <td>@wager.Game.Name</td>
+                <td>@wager.HomeOrVisit</td>
+                <td>@wager.Amount</td>
+            </tr>
+        }
+    </tbody>
+</table>

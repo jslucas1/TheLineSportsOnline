@@ -10,5 +10,6 @@ namespace TheLineSportsOnline.ViewModels
     {
         public Game Game { get; set; }
         public IEnumerable<Team> Teams { get; set; }
+        public IEnumerable<Week> Weeks { get; set; }
     }
 }

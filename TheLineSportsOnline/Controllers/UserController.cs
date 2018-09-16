@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using TheLineSportsOnline.Models;
+using TheLineSportsOnline.ViewModels;
 
 namespace TheLineSportsOnline.Controllers
 {
@@ -50,7 +51,7 @@ namespace TheLineSportsOnline.Controllers
                 .First();
 
             Wager defaultWager = new Wager();
-            defaultWager.Amount = (int) (((user.Wallet / 2) % 10 == 0) ? (user.Wallet / 2) : (user.Wallet / 2) + 5);
+            defaultWager.Amount = (int)user.getMinWager();
             defaultWager.ApplicationUserId = user.Id;
             defaultWager.GameId = game.Id;
             defaultWager.HomeOrVisit = (game.Spread < 0) ? "Home" : "Away";
@@ -110,7 +111,27 @@ namespace TheLineSportsOnline.Controllers
             _context.SaveChanges();
             return RedirectToAction("Index", "User");
         }
+        [Authorize(Roles = "Admin")]
+        public ActionResult Info(string id)
+        {
+            var user = _context.Users.SingleOrDefault(c => c.Id == id);
+            if (user == null)
+            {
+                return HttpNotFound();
+            }
+            var wagers = _context.Wagers
+                .Include(g => g.Game)
+        .Where(w => w.Game.Active)
+        .Where(w => w.ApplicationUserId == user.Id)
+        .ToList();
+            var viewModel = new UserInfoViewModel()
+            {
+                User = user,
+                Wagers = wagers
+            };
 
+            return View("UserInfo", viewModel);
+        }
         //[HttpPost]
         //[ValidateAntiForgeryToken]
         //public ActionResult Save(Game game)

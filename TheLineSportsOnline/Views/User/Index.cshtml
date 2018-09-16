@@ -11,69 +11,50 @@
 </p>
 <table class="table table-condensed table-striped">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Wallet)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LockoutEnabled)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AccessFailedCount)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UserName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Locked)
-        </th>
-        <th></th>
+        <th>Name</th>
+        <th>Wallet</th>
+        <th>Email</th>
+        <th>Lock</th>
+        <th>Default</th>
+        <th>Delete</th>
     </tr>
 
     @foreach (var item in Model)
     {
         <tr>
             <td>
+                @Html.ActionLink(item.Email, "Info", new { id = item.Id})
+            </td>
+
+            <td>
                 @Html.DisplayFor(modelItem => item.Wallet)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LockoutEnabled)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AccessFailedCount)
-            </td>
+
             <td>
                 @Html.DisplayFor(modelItem => item.UserName)
             </td>
 
-            @if (item.Locked)
-            {
-                <td>
+            <td>
+                @if (item.Locked)
+                {
                     @Html.ActionLink("Unlock", "Lock", new { id = item.Id, setLock = false }, new { @class = "btn btn-sm btn-primary" })
-
-                </td>
-            }
-            else if (!item.Locked)
-            {
-                <td>
+                }
+                else if (!item.Locked)
+                {
                     @Html.ActionLink("Lock", "Lock", new { id = item.Id, setLock = true }, new { @class = "btn btn-sm btn-primary" })
+                }
+            </td>
 
-                </td>
+            <td>
+                @if (!item.minWagerMeet())
+                {
+                    @Html.ActionLink("Default", "Default", new { id = item.Id }, new { @class = "btn btn-sm btn-warning" })
+                }
+            </td>
 
-            }
-
-                <td>
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-sm btn-danger" })
-                    @if (!item.minWagerMeet())
-                    {
-                        @Html.ActionLink("Default", "Default", new { id = item.Id }, new { @class = "btn btn-sm btn-warning" })
-                    }
-                </td>
+            <td>
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-sm btn-danger" })
+            </td>
         </tr>
     }
 
