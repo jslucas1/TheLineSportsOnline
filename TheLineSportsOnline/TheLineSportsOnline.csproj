@@ -234,6 +234,10 @@
     <Compile Include="Migrations\201809161754019_AddWeekName.Designer.cs">
       <DependentUpon>201809161754019_AddWeekName.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809172311261_AddUserName.cs" />
+    <Compile Include="Migrations\201809172311261_AddUserName.Designer.cs">
+      <DependentUpon>201809172311261_AddUserName.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Conference.cs" />
@@ -386,6 +390,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201809161754019_AddWeekName.resx">
       <DependentUpon>201809161754019_AddWeekName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809172311261_AddUserName.resx">
+      <DependentUpon>201809172311261_AddUserName.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
