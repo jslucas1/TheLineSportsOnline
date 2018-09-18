@@ -248,4 +248,7 @@ C:\Users\Austin Lucas\Desktop\TheLineSportsOnline\TheLineSportsOnline\obj\Releas
 C:\Users\Austin Lucas\Desktop\TheLineSportsOnline\TheLineSportsOnline\obj\Release\TheLineSportsOnline.csproj.CopyComplete
 C:\Users\Austin Lucas\Desktop\TheLineSportsOnline\TheLineSportsOnline\obj\Release\TheLineSportsOnline.dll
 C:\Users\Austin Lucas\Desktop\TheLineSportsOnline\TheLineSportsOnline\obj\Release\TheLineSportsOnline.pdb
-C:\Users\jslucas\Documents\GitHub\TheLineSportsOnline\TheLineSportsOnline\obj\Release\TheLineSportsOnline.Migrations.WagerIdToINT.resources
+C:\Users\jslucas\Documents\GitHub\TheLineSportsOnline\TheLineSportsOnline\obj\Release\TheLineSportsOnline.Migrations.AddUserLockedField.resources
+C:\Users\jslucas\Documents\GitHub\TheLineSportsOnline\TheLineSportsOnline\obj\Release\TheLineSportsOnline.Migrations.AddChange.resources
+C:\Users\jslucas\Documents\GitHub\TheLineSportsOnline\TheLineSportsOnline\obj\Release\TheLineSportsOnline.Migrations.AddWeek.resources
+C:\Users\jslucas\Documents\GitHub\TheLineSportsOnline\TheLineSportsOnline\obj\Release\TheLineSportsOnline.Migrations.AddWeekName.resources

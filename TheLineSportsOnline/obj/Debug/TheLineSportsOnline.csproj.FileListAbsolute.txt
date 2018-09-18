@@ -247,4 +247,7 @@ C:\Users\jslucas\Documents\GitHub\TheLineSportsOnline\TheLineSportsOnline\obj\De
 C:\Users\jslucas\Documents\GitHub\TheLineSportsOnline\TheLineSportsOnline\obj\Debug\TheLineSportsOnline.dll
 C:\Users\jslucas\Documents\GitHub\TheLineSportsOnline\TheLineSportsOnline\obj\Debug\TheLineSportsOnline.pdb
 C:\Users\jslucas\Documents\GitHub\TheLineSportsOnline\TheLineSportsOnline\obj\Debug\TheLineSportsOnline.Migrations.addMinMaxWager.resources
-C:\Users\jslucas\Documents\GitHub\TheLineSportsOnline\TheLineSportsOnline\obj\Debug\TheLineSportsOnline.Migrations.WagerIdToINT.resources
+C:\Users\jslucas\Documents\GitHub\TheLineSportsOnline\TheLineSportsOnline\obj\Debug\TheLineSportsOnline.Migrations.AddUserLockedField.resources
+C:\Users\jslucas\Documents\GitHub\TheLineSportsOnline\TheLineSportsOnline\obj\Debug\TheLineSportsOnline.Migrations.AddChange.resources
+C:\Users\jslucas\Documents\GitHub\TheLineSportsOnline\TheLineSportsOnline\obj\Debug\TheLineSportsOnline.Migrations.AddWeek.resources
+C:\Users\jslucas\Documents\GitHub\TheLineSportsOnline\TheLineSportsOnline\obj\Debug\TheLineSportsOnline.Migrations.AddWeekName.resources

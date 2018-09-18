@@ -1,10 +1,7 @@
 {
   "ExpandedNodes": [
     "",
-    "\\TheLineSportsOnline",
-    "\\TheLineSportsOnline\\bin\\roslyn",
-    "\\TheLineSportsOnline\\obj\\Debug",
-    "\\TheLineSportsOnline\\obj\\Release"
+    "\\TheLineSportsOnline"
   ],
   "SelectedNode": "\\TheLineSportsOnline\\ApplicationInsights.config",
   "PreviewInSolutionExplorer": false

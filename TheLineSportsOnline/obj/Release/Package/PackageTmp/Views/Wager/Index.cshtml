@@ -1,11 +1,10 @@
 ﻿@model IEnumerable<TheLineSportsOnline.Models.Wager>
-
+@using TheLineSportsOnline.Models
 @{
     ViewBag.Title = "Index";
 }
 
 <h2>This Weeks Wagers</h2>
-
 @Html.ActionLink("Place Wager", "New", "Wager", null, new { @class = "btn btn-primary" })
 @if (ViewData["minWagerIsMeet"].ToString() == "false")
 {

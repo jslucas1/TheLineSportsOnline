@@ -46,6 +46,13 @@
         @Html.ValidationMessageFor(m => m.Game.VisitTeamScore)
     </div>
 
+    // Week
+    <div class="form-group">
+        @Html.LabelFor(m => m.Game.WeekId)
+        @Html.DropDownListFor(m => m.Game.WeekId, new SelectList(Model.Weeks, "Id", "Name"), "Select Week", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Game.WeekId)
+    </div>
+
     // Active
     <div class="checkbox">
         <label>

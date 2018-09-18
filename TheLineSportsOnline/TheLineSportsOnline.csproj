@@ -206,6 +206,7 @@
     <Compile Include="Controllers\TeamsController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\WagerController.cs" />
+    <Compile Include="Controllers\WeeksController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -217,20 +218,34 @@
     <Compile Include="Migrations\201808310014070_addMinMaxWager.Designer.cs">
       <DependentUpon>201808310014070_addMinMaxWager.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201809072153521_WagerIdToINT.cs" />
-    <Compile Include="Migrations\201809072153521_WagerIdToINT.Designer.cs">
-      <DependentUpon>201809072153521_WagerIdToINT.cs</DependentUpon>
+    <Compile Include="Migrations\201809122352002_AddUserLockedField.cs" />
+    <Compile Include="Migrations\201809122352002_AddUserLockedField.Designer.cs">
+      <DependentUpon>201809122352002_AddUserLockedField.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809130034016_AddChange.cs" />
+    <Compile Include="Migrations\201809130034016_AddChange.Designer.cs">
+      <DependentUpon>201809130034016_AddChange.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809161531150_AddWeek.cs" />
+    <Compile Include="Migrations\201809161531150_AddWeek.Designer.cs">
+      <DependentUpon>201809161531150_AddWeek.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809161754019_AddWeekName.cs" />
+    <Compile Include="Migrations\201809161754019_AddWeekName.Designer.cs">
+      <DependentUpon>201809161754019_AddWeekName.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Conference.cs" />
     <Compile Include="Models\Game.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="ViewModels\UserInfoViewModel.cs" />
     <Compile Include="Models\LockOfTheWeek.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Team.cs" />
     <Compile Include="Models\Wager.cs" />
     <Compile Include="Models\WagerValidation.cs" />
+    <Compile Include="Models\Week.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\GameFormViewModel.cs" />
@@ -330,6 +345,12 @@
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\Home\Rules.cshtml" />
     <Content Include="Views\Game\List.cshtml" />
+    <Content Include="Views\User\UserInfo.cshtml" />
+    <Content Include="Views\Weeks\Create.cshtml" />
+    <Content Include="Views\Weeks\Delete.cshtml" />
+    <Content Include="Views\Weeks\Details.cshtml" />
+    <Content Include="Views\Weeks\Edit.cshtml" />
+    <Content Include="Views\Weeks\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -354,8 +375,17 @@
     <EmbeddedResource Include="Migrations\201808310014070_addMinMaxWager.resx">
       <DependentUpon>201808310014070_addMinMaxWager.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201809072153521_WagerIdToINT.resx">
-      <DependentUpon>201809072153521_WagerIdToINT.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201809122352002_AddUserLockedField.resx">
+      <DependentUpon>201809122352002_AddUserLockedField.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809130034016_AddChange.resx">
+      <DependentUpon>201809130034016_AddChange.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809161531150_AddWeek.resx">
+      <DependentUpon>201809161531150_AddWeek.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809161754019_AddWeekName.resx">
+      <DependentUpon>201809161754019_AddWeekName.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
