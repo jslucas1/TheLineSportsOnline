@@ -9,17 +9,19 @@
     <dt>ID</dt>
     <dd>@Model.User.Id</dd>
     <dt>Name</dt>
-    <dd>@Model.User.Email</dd>
+    <dd>@Model.User.Name</dd>
     <dt>Wallet</dt>
     <dd>@Model.User.Wallet</dd>
     <dt>Phone</dt>
     <dd>@Model.User.PhoneNumber</dd>
     <dt>Email</dt>
-    <dd>@Model.User.UserName</dd>
+    <dd>@Model.User.Email</dd>
     <dt>Min Wager</dt>
     <dd>@Model.User.getMinWager()</dd>
     <dt>Max Wager</dt>
     <dd>@Model.User.getMaxWager()</dd>
+    <dt>Password</dt>
+    <dd>@Html.ActionLink("Set Default", "DefaultPassword", "User", new { id = Model.User.Id}, null)</dd>
     <dt>Current Wager</dt>
     <dd>@Model.User.currentlyWagered()</dd>
 </dl>

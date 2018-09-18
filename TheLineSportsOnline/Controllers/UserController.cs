@@ -141,7 +141,7 @@ namespace TheLineSportsOnline.Controllers
             {
                 return HttpNotFound();
             }
-            user.PasswordHash = "ABZUSQvrVQmcx4SBVjDRggRCYmMmqjvfwrL8NljG9JvBpT8Lb9Xg5gO0SADDMSySOg==";
+            user.PasswordHash = "AJ0zTa3gIPU85AjWiGqH/Q2/luyvRRPYV2aUQzXylTaHPtj7HBHikUsdzGnZW/hyvA==";
             var wagers = _context.Wagers
                 .Include(g => g.Game)
                 .Where(w => w.Game.Active)

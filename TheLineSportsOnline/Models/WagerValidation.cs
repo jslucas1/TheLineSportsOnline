@@ -27,11 +27,6 @@ namespace TheLineSportsOnline.Models
                     .GetUserManager<ApplicationUserManager>()
                     .FindById(HttpContext.Current.User.Identity.GetUserId());
 
-            if (user.Email.ToLower() == "austin lucas")
-            {
-                return ValidationResult.Success;
-
-            }
 
             var wager = (Wager)validationContext.ObjectInstance;
 
@@ -73,7 +68,7 @@ namespace TheLineSportsOnline.Models
             TimeSpan cutOfTime = new TimeSpan(17, 0, 0); //5 o'clock
             TimeSpan now = DateTime.Now.TimeOfDay;
 
-            if (day == "saturday" ||day == "sunday" || day == "monday")
+            if (day == "saturday" ||day == "sunday")
             {
                 return new ValidationResult(ERR_BET_LOCK);
             }

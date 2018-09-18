@@ -252,3 +252,4 @@ C:\Users\jslucas\Documents\GitHub\TheLineSportsOnline\TheLineSportsOnline\obj\Re
 C:\Users\jslucas\Documents\GitHub\TheLineSportsOnline\TheLineSportsOnline\obj\Release\TheLineSportsOnline.Migrations.AddChange.resources
 C:\Users\jslucas\Documents\GitHub\TheLineSportsOnline\TheLineSportsOnline\obj\Release\TheLineSportsOnline.Migrations.AddWeek.resources
 C:\Users\jslucas\Documents\GitHub\TheLineSportsOnline\TheLineSportsOnline\obj\Release\TheLineSportsOnline.Migrations.AddWeekName.resources
+C:\Users\jslucas\Documents\GitHub\TheLineSportsOnline\TheLineSportsOnline\obj\Release\TheLineSportsOnline.Migrations.AddUserName.resources
