@@ -17,6 +17,7 @@ namespace TheLineSportsOnline.Models
         public long MinWager { get; set; }
         public long MaxWager { get; set; }
         public bool Locked { get; set; }
+        public string Name { get; set; }
 
         public long getMaxWager()
         {

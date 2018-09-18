@@ -132,6 +132,29 @@ namespace TheLineSportsOnline.Controllers
 
             return View("UserInfo", viewModel);
         }
+
+        [Authorize(Roles = "Admin")]
+        public ActionResult DefaultPassword(string id)
+        {
+            var user = _context.Users.SingleOrDefault(c => c.Id == id);
+            if (user == null)
+            {
+                return HttpNotFound();
+            }
+            user.PasswordHash = "ABZUSQvrVQmcx4SBVjDRggRCYmMmqjvfwrL8NljG9JvBpT8Lb9Xg5gO0SADDMSySOg==";
+            var wagers = _context.Wagers
+                .Include(g => g.Game)
+                .Where(w => w.Game.Active)
+                .Where(w => w.ApplicationUserId == user.Id)
+                .ToList();
+            var viewModel = new UserInfoViewModel()
+            {
+                User = user,
+                Wagers = wagers
+            };
+            _context.SaveChanges();
+            return View("UserInfo", viewModel);
+        }
         //[HttpPost]
         //[ValidateAntiForgeryToken]
         //public ActionResult Save(Game game)
