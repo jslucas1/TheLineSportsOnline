@@ -18,6 +18,7 @@ namespace TheLineSportsOnline.Models
         private const string ERR_MAX_BET = "This Wager will put you over your maximum wager amount.";
         private const string ERR_ELIMINATED = "You have been eliminated. Wagers locked.";
         private const string ERR_LOCKED = "Wagers are currently locked.";
+        private const string ERR_WAGER_EXISTS = "This game has already been wagered on. Please delete existing wager to place a new one.";
 
         private ApplicationDbContext _context = new ApplicationDbContext();
 
@@ -29,6 +30,13 @@ namespace TheLineSportsOnline.Models
 
 
             var wager = (Wager)validationContext.ObjectInstance;
+
+            //Already been wagered on
+            var wager_ = _context.Wagers.Where(w => w.ApplicationUserId == user.Id).Where(x => x.GameId == wager.GameId).FirstOrDefault();
+            if (wager_ != null)
+            {
+                return new ValidationResult(ERR_WAGER_EXISTS);
+            }
 
             // Still in game
             if (user.Wallet <= -1000)
