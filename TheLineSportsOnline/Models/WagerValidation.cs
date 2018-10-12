@@ -24,9 +24,12 @@ namespace TheLineSportsOnline.Models
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
             var wager = (Wager)validationContext.ObjectInstance;
+            // if user is null that means it is a new wager else you are being defaulted
+            var usedId = (wager.User == null) ? HttpContext.Current.User.Identity.GetUserId() : wager.User.Id;
+
             ApplicationUser user = HttpContext.Current.GetOwinContext()
                    .GetUserManager<ApplicationUserManager>()
-                   .FindById(wager.User.Id);
+                   .FindById(usedId);
             //Already been wagered on
             var wager_ = _context.Wagers.Where(w => w.ApplicationUserId == user.Id).Where(x => x.GameId == wager.GameId).FirstOrDefault();
             if (wager_ != null)
