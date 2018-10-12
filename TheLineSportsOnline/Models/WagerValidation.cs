@@ -70,13 +70,9 @@ namespace TheLineSportsOnline.Models
                 return new ValidationResult(ERR_MAX_BET);
 
             }
-         
-            // Wager Locked based on DateTime
-            var day = DateTime.Now.DayOfWeek.ToString().ToLower();
-            TimeSpan cutOfTime = new TimeSpan(17, 0, 0); //5 o'clock
-            TimeSpan now = DateTime.Now.TimeOfDay;
 
-            if (day == "saturday" ||day == "sunday")
+            // User Locked?
+            if (user.Locked)
             {
                 return new ValidationResult(ERR_BET_LOCK);
             }
