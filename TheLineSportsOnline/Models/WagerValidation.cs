@@ -14,7 +14,6 @@ namespace TheLineSportsOnline.Models
     {
         private const string ERR_POS_BET = "Wager amount must be a positve number.";
         private const string ERR_MOD_TEN = "Wager amount must be in $10 increments.";
-        private const string ERR_BET_LOCK = "Wagering is currently locked. Defualt may be applied";
         private const string ERR_MAX_BET = "This Wager will put you over your maximum wager amount.";
         private const string ERR_ELIMINATED = "You have been eliminated. Wagers locked.";
         private const string ERR_LOCKED = "Wagers are currently locked.";
@@ -24,13 +23,10 @@ namespace TheLineSportsOnline.Models
 
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
-            ApplicationUser user = HttpContext.Current.GetOwinContext()
-                    .GetUserManager<ApplicationUserManager>()
-                    .FindById(HttpContext.Current.User.Identity.GetUserId());
-
-
             var wager = (Wager)validationContext.ObjectInstance;
-
+            ApplicationUser user = HttpContext.Current.GetOwinContext()
+                   .GetUserManager<ApplicationUserManager>()
+                   .FindById(wager.User.Id);
             //Already been wagered on
             var wager_ = _context.Wagers.Where(w => w.ApplicationUserId == user.Id).Where(x => x.GameId == wager.GameId).FirstOrDefault();
             if (wager_ != null)
@@ -69,12 +65,6 @@ namespace TheLineSportsOnline.Models
             {
                 return new ValidationResult(ERR_MAX_BET);
 
-            }
-
-            // User Locked?
-            if (user.Locked)
-            {
-                return new ValidationResult(ERR_BET_LOCK);
             }
 
             return ValidationResult.Success;

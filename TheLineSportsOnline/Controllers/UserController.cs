@@ -46,10 +46,12 @@ namespace TheLineSportsOnline.Controllers
                 return HttpNotFound();
             }
 
-            var game = _context.Games
+            var games = _context.Games
                 .Where(a => a.Active == true)
-                .OrderByDescending(b => b.Spread)
-                .First();
+                .OrderByDescending(b => b.Spread).ToList();
+            var g1 = games.First();
+            var g2 = games.Last();
+            var game = (Math.Abs((double)g1.Spread) > Math.Abs((double)g2.Spread)) ? g1 : g2;
 
             Wager defaultWager = new Wager();
             defaultWager.Amount = (int)user.getMinWager();
@@ -65,7 +67,7 @@ namespace TheLineSportsOnline.Controllers
             {
                 _context.Wagers.Remove(w);
             }
-
+            _context.SaveChanges();
             _context.Wagers.Add(defaultWager);
 
             _context.SaveChanges();
