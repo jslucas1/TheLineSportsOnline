@@ -9,6 +9,7 @@ using TheLineSportsOnline.ViewModels;
 
 namespace TheLineSportsOnline.Controllers
 {
+    [Authorize]
     public class UserController : Controller
     {
         private ApplicationDbContext _context;
@@ -80,6 +81,23 @@ namespace TheLineSportsOnline.Controllers
             }
 
             user.Locked = setLock;
+
+            _context.SaveChanges();
+            return RedirectToAction("Index", "User");
+        }
+        public ActionResult LockAll(bool setLock)
+        {
+            var users = _context.Users;
+
+            if (users == null)
+            {
+                return HttpNotFound();
+            }
+
+            foreach (var user in users)
+            {
+                user.Locked = setLock;
+            }
 
             _context.SaveChanges();
             return RedirectToAction("Index", "User");

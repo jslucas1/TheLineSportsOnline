@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using TheLineSportsOnline.ViewModels;
 
+
 namespace TheLineSportsOnline.Controllers
 {
     [Authorize]
@@ -105,12 +106,17 @@ namespace TheLineSportsOnline.Controllers
         public ActionResult Delete(int id)
         {
             var wagerInDb = _context.Wagers.SingleOrDefault(c => c.Id == id);
-
+            ApplicationUser user = System.Web.HttpContext.Current.GetOwinContext()
+                .GetUserManager<ApplicationUserManager>()
+                .FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
             if (wagerInDb == null)
             {
                 return HttpNotFound();
             }
-
+            if (user.Locked)
+            {
+                return RedirectToAction("index", "Wager");
+            }
             _context.Wagers.Remove(wagerInDb);
 
             _context.SaveChanges();

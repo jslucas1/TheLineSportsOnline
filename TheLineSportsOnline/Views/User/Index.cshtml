@@ -8,6 +8,9 @@
 
 <p>
     @Html.ActionLink("Run Results", "CalcResults", null, new { @class = "btn btn-sm btn-primary" })
+    @Html.ActionLink("Lock All", "LockAll", new { setLock=true }, new { @class = "btn btn-sm btn-primary" })
+    @Html.ActionLink("Unlock All", "LockAll", new { setLock=false}, new { @class = "btn btn-sm btn-primary" })
+
 </p>
 <table class="table table-condensed table-striped">
     <tr>
